@@ -9,6 +9,8 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  public app_name : string = 'Tienda de Libros';
+  public isLogged: boolean =  false;
   ngOnInit() {
   }
 

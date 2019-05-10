@@ -6,4 +6,20 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
+
+  registerUser(){
+
+  }
+  loginEmailUser(){
+
+  }
+  loginFacebookUser(){
+
+  }
+  loginGoogleUser(){
+
+  }
+  logoutUser(){
+
+  }
 }

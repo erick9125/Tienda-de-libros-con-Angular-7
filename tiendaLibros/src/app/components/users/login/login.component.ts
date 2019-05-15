@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithPopup( new auth.GoogleAuthProvider());
     this.router.navigate(['admin/list-books']);
   }
+  onLoginFacebook(){
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+
+  }
 
   onLogout(){
     this.afAuth.auth.signOut();

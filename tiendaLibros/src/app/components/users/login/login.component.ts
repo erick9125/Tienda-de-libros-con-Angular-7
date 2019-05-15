@@ -20,28 +20,31 @@ public password: string = '';
   onLogin(): void {
     this.authService.loginEmailUser(this.email, this.password)
     .then( (res) => {
-      this.router.navigate(['admin/list-books']);
+      this.onLoginRedirect();
     }).catch (err => console.log('err', err.message));
   }
 
   onLoginGoogle(): void {
     this.authService.loginGoogleUser()
     .then( (res) => {
-      console.log('resUser', res);
-      this.router.navigate(['admin/list-books']);
+      this.onLoginRedirect();
     }).catch ( err => console.log('err', err.message));
 
   }
   onLoginFacebook(){
     this.authService.loginFacebookUser()
     .then( (res) => {
-      this.router.navigate(['admin/lis-books']);
+      this.onLoginRedirect();
     }).catch (err => console.log('err', err.message ));
 
   }
 
   onLogout(){
     this.authService.logoutUser();
+  }
+
+  onLoginRedirect(){
+    this.router.navigate(['admin/list-books']);
   }
 
 }

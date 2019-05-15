@@ -5,16 +5,16 @@
         <div class="card_login">
           <div class="card">
             <div class="card-body text-center">
-              <form #formLogin="ngForm" >
+              <form #formLogin="ngForm" (submit)="onLogin()">
                 <h1 class="h3 mb-3 font-weight-normal" *ngIf="!isError">Login</h1>
-                <div class="alert alert-danger" role="alert" >
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
                   Algo no esta bien!
                 </div>
                 <div class="form-group">
-                  <input type="email" id="email" name="email" class="form-control" placeholder="Correo Electronico" required>
+                  <input [(ngModel)]="email" type="email" id="email" name="email" class="form-control" placeholder="Correo Electronico" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+                  <input [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Ingresar</button>
                 <div class="form-group">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import {AngularFireStorage } from '@angular/fire/storage';
@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class RegisterComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService, private storage: AngularFireStorage) { }
+  @ViewChild('imageUser') inputImageUser: ElementRef;
   public email: string = '';
   public password: string = '';
 
@@ -39,7 +40,17 @@ export class RegisterComponent implements OnInit {
   onAddUser(){
     this.authService.registerUser(this.email, this.password)
     .then((res) => {
-      this.router.navigate(['admin/list-books']);
+      this.authService.isAuth().subscribe(user =>{
+        if(user) {
+          user.updateProfile({
+            displayName: '',
+            photoURL: this.inputImageUser.nativeElement.value
+          }).then(  () => {
+            this.router.navigate(['admin/list-books']);
+          }).catch( (error) => console.log('error', error));
+
+        }
+      });
     }).catch(err => console.log('err', err.message));
   }
 

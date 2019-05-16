@@ -28,11 +28,25 @@
                   <div *ngIf="password.errors.required">La contraseña es requerida</div>
                   <div *ngIf="password.errors.minlength">La contraseña debe tener al menos 5 caracteres</div>
                 </div>
+                <hr>
                 <div class="form-group">
                   <h5>Seleccionar Imagen</h5>
-                  <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
-                </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
+                  <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFileLang" lang="es" accept=".png, .jpg" (change)="onUpload($event)">
+                      <label class="custom-file-label text-left" for="customFileLang">Seleccionar Archivo</label>
+                    </div>
+                  </div>
+                  <div class="progress my-4">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'">
+
+                    </div>
+                  </div>
+                <input #imageUser type="hidden" [value]="urlImage | async">
+                <button *ngIf="urlImage | async; else btnDisabled" type="submit" class="btn btn-lg btn-primary btn-block">Registrar</button>
+                <ng-template #btnDisabled>
+                    <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Registrar</button>
+                </ng-template>
+
                 <div class="form-group">
                   <a routerLink="/user/login" class="form-control login-user">¿Ya tienes una cuenta?</a>
                 </div>

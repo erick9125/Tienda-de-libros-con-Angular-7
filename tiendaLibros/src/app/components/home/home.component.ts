@@ -1,4 +1,6 @@
+import { DataApiService } from './../../services/data-api.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private dataApi: DataApiService) { }
+  public books = [];
+  public book = '';
   ngOnInit() {
+    this.dataApi.getAllBooks().subscribe(books => {
+      console.log('BOOKS', books);
+      this.books = books;
+    });
   }
 
 }

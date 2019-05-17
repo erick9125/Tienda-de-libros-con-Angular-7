@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -45,7 +46,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

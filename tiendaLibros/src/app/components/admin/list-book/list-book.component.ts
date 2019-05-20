@@ -1,4 +1,8 @@
+import { BookInterface } from './../../../models/book';
+import { DataApiService } from './../../../services/data-api.service';
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-book',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListBookComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataApi: DataApiService) { }
+    private books: BookInterface = {};
 
   ngOnInit() {
+    this.getListBooks();
+  }
+
+  getListBooks() {
+    this.dataApi.getAllBooks().subscribe(books => {
+      this.books = books;
+    })
+  }
+
+  onDelete(){
+    console.log('LIBRO ELIMINADO');
   }
 
 }

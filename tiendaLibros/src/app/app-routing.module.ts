@@ -19,7 +19,7 @@ const routes: Routes = [
     component: OffersComponent
   },
   {
-    path: 'book:/id',
+    path: 'book/:id',
     component: DetailsBookComponent
   },
   {

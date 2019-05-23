@@ -24,8 +24,13 @@ export class ListBookComponent implements OnInit {
     });
   }
 
-  onDelete() {
-    console.log('LIBRO ELIMINADO');
+  onDeleteBook(idBook: string) {
+    // console.log('LIBRO ELIMINADO');
+    const confirmacion = confirm('¿Estas seguro que quieres eliminar este libro?');
+    if (confirmacion){
+      this.dataApi.deleteBook(idBook);
+    }
+
   }
 
 }

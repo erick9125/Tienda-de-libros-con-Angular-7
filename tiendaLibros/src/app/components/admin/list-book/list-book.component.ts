@@ -24,13 +24,17 @@ export class ListBookComponent implements OnInit {
     });
   }
 
-  onDeleteBook(idBook: string) {
+  onDeleteBook(idBook: string): void {
     // console.log('LIBRO ELIMINADO');
     const confirmacion = confirm('¿Estas seguro que quieres eliminar este libro?');
     if (confirmacion){
       this.dataApi.deleteBook(idBook);
     }
 
+  }
+
+  onPreUpdateBook(book: BookInterface){
+    this.dataApi.selectedBook = Object.assign({}, book);
   }
 
 }

@@ -12,19 +12,19 @@ import {NgForm} from '@angular/forms';
 export class ListBookComponent implements OnInit {
 
   constructor(private dataApi: DataApiService) { }
-    private books: BookInterface = {};
+    private books: BookInterface[] = [];
 
   ngOnInit() {
     this.getListBooks();
   }
 
-  getListBooks() {
+  getListBooks(): any {
     this.dataApi.getAllBooks().subscribe(books => {
-      this.books = books;
-    })
+      this.books  = books;
+    });
   }
 
-  onDelete(){
+  onDelete() {
     console.log('LIBRO ELIMINADO');
   }
 

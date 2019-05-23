@@ -1,5 +1,7 @@
+import { NgForm } from '@angular/forms';
+import { DataApiService } from './../../services/data-api.service';
 import { Component, OnInit } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-modal',
@@ -10,9 +12,13 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalComponent implements OnInit {
 
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal) { }
+  constructor(private dataApi: DataApiService) { }
 
   ngOnInit() {
+  }
+
+  onSaveBook(bookForm: NgForm): void {
+    this.dataApi.addBook(bookForm.value);
   }
 
 }

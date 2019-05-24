@@ -17,7 +17,7 @@ export class AuthService {
   registerUser(email: string, pass: string) {
     return new Promise((resolve, reject) => {
       this.afsAuth.auth.createUserWithEmailAndPassword(email, pass)
-      .then( userData =>{
+      .then( userData => {
         resolve(userData),
         this.updateUserData(userData.user)
       }).catch(err => console.log(reject(err)))
@@ -54,10 +54,14 @@ export class AuthService {
       id: user.uid,
       email: user.email,
       roles: {
-        editor: true
+        admin: true
       }
     }
     return userRef.set(data, {merge : true});
+  }
+
+  isUserAdmin(userUid) {
+    return this.afs.doc<UserInterface>(`users/${userUid}`).valueChanges();
   }
 
 }

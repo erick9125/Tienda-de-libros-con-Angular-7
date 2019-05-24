@@ -10,11 +10,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  user: UserInterface = {
-    name: '',
-    email: '',
-    photoUrl: ''
-  };
+  user: UserInterface;
 
   public providerId: string = 'null';
   ngOnInit() {

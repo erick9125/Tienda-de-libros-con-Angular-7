@@ -11,8 +11,7 @@ import { BookInterface } from '../models/book';
 export class DataApiService {
 
   constructor(private afs: AngularFirestore) {
-    this.bookCollecction = afs.collection<BookInterface>('books');
-    this.books = this.bookCollecction.valueChanges();
+
   }
 
   private bookCollecction: AngularFirestoreCollection<BookInterface>;
@@ -24,6 +23,7 @@ export class DataApiService {
   };
 
   getAllBooks() {
+    this.bookCollecction = this.afs.collection<BookInterface>('books');
     return this.books = this.bookCollecction.snapshotChanges()
     .pipe(map( changes => {
       return changes.map( action => {

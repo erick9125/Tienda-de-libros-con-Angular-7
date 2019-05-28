@@ -31,10 +31,11 @@ export class ListBookComponent implements OnInit {
       this.userUid = auth.uid;
       this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
         this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
-      })
+      });
      }
-   })
+   });
  }
+
 
   getListBooks(): any {
     this.dataApi.getAllBooks().subscribe(books => {

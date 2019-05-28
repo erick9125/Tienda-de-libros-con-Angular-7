@@ -1,6 +1,6 @@
 import { NgForm } from '@angular/forms';
 import { DataApiService } from './../../services/data-api.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef , Input} from '@angular/core';
 
 
 @Component({
@@ -16,6 +16,7 @@ export class ModalComponent implements OnInit {
 
   // simula nuestro boton cerrar para el modal
   @ViewChild('btnClose') btnClose: ElementRef;
+  @Input() userUid: string;
 
   ngOnInit() {
   }
@@ -23,6 +24,7 @@ export class ModalComponent implements OnInit {
   onSaveBook(bookForm: NgForm): void {
     if (bookForm.value.id === null) {
       // new
+      bookForm.value.userUid = this.userUid;
       this.dataApi.addBook(bookForm.value);
     } else {
       // update

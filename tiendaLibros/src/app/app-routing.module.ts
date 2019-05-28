@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -9,6 +10,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -16,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'offers',
-    component: OffersComponent
+    component: OffersComponent, canActivate: [AuthGuard]
   },
   {
     path: 'book/:id',
@@ -24,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/list-books',
-    component: ListBookComponent
+    component: ListBookComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/login',
@@ -36,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'user/profile',
-    component : ProfileComponent
+    component : ProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: '**',
